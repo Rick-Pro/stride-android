@@ -23,14 +23,22 @@ The PitPat app that comes with the pad wants an account, plays sounds, shows a 3
 
 ## Compatible pads
 
-Stride is for walking pads that use the **PitPat app**. Brands that sell them include **PitPat**, **Superun** and **DeerRun**.
+Stride works with walking pads and under-desk treadmills that connect through the **PitPat app**. They are sold on Amazon, eBay and other stores as "walking pad", "under desk treadmill", "2 in 1" or "3 in 1 treadmill", with "PitPat APP" or "APP and remote control" in the listing. Brands that sell them include **PitPat**, **Superun** and **DeerRun**, and many store-brand pads ship with the same app.
 
-**Rule of thumb:** if the pad's manual says to download the PitPat app, Stride should work with it.
+**Rule of thumb:** if the box, the manual or the store listing says "PitPat app", Stride should work with it.
+
+**Not sure if yours works?**
+
+- The manual says to download PitPat? It should work.
+- The pad shows up in Bluetooth as `PitPat-something`, or its label has a model code starting with `BA` (like BA06, BA08, BA09 or BA10)? It should work.
+- Examples: DeerRun Q2 Urban, Z10 and Z20, SupeRun BA09, PitPat HY-BA06B1 (sold as BA06-B1).
 
 | Pad | Status |
 |---|---|
 | PitPat **HY-BA06B1** (sold as BA06-B1, shows as `PitPat-T01` over Bluetooth) | **Tested** on a Google Pixel 8 Pro: connect, start, speed, stop and live status |
-| Other PitPat, Superun and DeerRun pads | Expected to work, **not tested** by us. [Tell us how it went](https://github.com/Rick-Pro/stride-android/issues/new/choose) |
+| Other pads that use the PitPat app (PitPat, Superun, DeerRun and store brands) | Should work, **not all tested** by us. [Tell us how it went](https://github.com/Rick-Pro/stride-android/issues/new/choose) |
+
+Stride is an independent app and is not affiliated with or endorsed by PitPat, Superun or DeerRun. All product names and trademarks belong to their owners.
 
 Stride finds a pad by its Bluetooth name (it starts with `PitPat` or `BA0`) or by the Bluetooth service it advertises. If **Find** never lists your pad, open an issue with the pad's model and the name Android's Bluetooth settings shows for it.
 
@@ -140,6 +148,7 @@ Agents: read this map first, don't scan the repo. Then read `docs/design.md`, `d
 | `docs/privacy.md`, `docs/privacy.html` | The privacy policy: Stride collects nothing. Same text twice; the page is https://rick-pro.github.io/stride-android/privacy.html, which the About screen and the Play listing link to |
 | `docs/protocol.md` | The PitPat BLE protocol with the exact frames and their sources |
 | `docs/index.html` | The landing page (GitHub Pages from `docs/`) |
+| `assets/play-store/` | The Google Play graphics: `icon-512.png`, `feature-graphic-1024x500.png`, three phone screenshots in `screenshots/`, and `make_assets.py`, which renders the icon and the feature graphic from the launcher art |
 | `core/` | Pure Kotlin logic with JUnit 4 tests, no Android imports: `protocol` (frames, the three pad layouts and how one is picked, the wrapped-pad link), `control` (STOP-first queue, safety rules, step estimate), `units` (mph and miles), `history` (walk record, walk detection, JSON lines, totals) |
 | `app/` | The Android app: `ble/` (permissions, scanner, GATT), `session/` (the treadmill manager that owns the link, settings, haptics, log), `history/` (the walks file), `ui/` (Setup, Control, History, Settings, theme). `debug.keystore` is the public Android debug key for CI's debug builds, the same file as Kestrel's, not a secret (decisions D6 and D11) |
 | `settings.gradle.kts`, `build.gradle.kts`, `gradle/`, `gradlew` | Gradle build. All versions are in `gradle/libs.versions.toml` |
